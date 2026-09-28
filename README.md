@@ -23,7 +23,7 @@ Version Control:** Git & GitHub
 
 📁 Project Structure
 
-text
+```text
 res://
 ├── assets/                  # Raw art, audio, and mesh assets[cite: 1]
 │   ├── audio/              # Sound effects and music[cite: 1]
@@ -53,7 +53,7 @@ res://
     ├── wildlife/           # Animal state machines[cite: 1]
     └── world/              # Interactable base scripts and environment logic[cite: 1]
 
-
+```
 
  🎮 Controls & Keybindings
 
