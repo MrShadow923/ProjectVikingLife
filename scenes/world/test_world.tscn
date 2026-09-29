@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://bqnjm1mrt884w"]
 
+[ext_resource type="PackedScene" uid="uid://dextwnvk5w1fs" path="res://scenes/player/player.tscn" id="1_tjl6x"]
+[ext_resource type="Script" uid="uid://kw5gly8iuudy" path="res://scripts/world/interactable.gd" id="2_xl1yy"]
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_jv7ya"]
 size = Vector2(100, 100)
 
@@ -15,9 +18,14 @@ sky_material = SubResource("ProceduralSkyMaterial_5amoe")
 background_mode = 2
 sky = SubResource("Sky_pjlnr")
 
+[sub_resource type="BoxMesh" id="BoxMesh_jv7ya"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pjlnr"]
+
 [node name="World" type="Node3D" unique_id=1728345729]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=377548713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.013145447, -0.0501976, 0.02406311)
 mesh = SubResource("PlaneMesh_jv7ya")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=901777871]
@@ -31,5 +39,18 @@ transform = Transform3D(0.8660254, -0.35355338, 0.35355338, 0, 0.70710677, 0.707
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=414765122]
 environment = SubResource("Environment_jv7ya")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1090994211]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 21.445538, 31.99282)
+[node name="Player" parent="." unique_id=1409802064 instance=ExtResource("1_tjl6x")]
+
+[node name="TestChest" type="StaticBody3D" parent="." unique_id=327865359]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestChest" unique_id=266056436]
+mesh = SubResource("BoxMesh_jv7ya")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TestChest" unique_id=1634640147]
+shape = SubResource("BoxShape3D_pjlnr")
+
+[node name="Interactable" type="Node" parent="TestChest" unique_id=1553002176]
+script = ExtResource("2_xl1yy")
+prompt_text = "\"Open Chest\""
+metadata/_custom_type_script = "uid://kw5gly8iuudy"
